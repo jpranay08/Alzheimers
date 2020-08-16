@@ -1,0 +1,36 @@
+{% extends 'index.html'%}
+{% block content %}
+<div class="jumbotron">
+        <a class="navbar-brand" href="{% url 'index' %}"><font size="50" color="Red">Disease Predictor</font></a>     
+    </div>   
+
+    <div class="pricing" style="height: 600px;">
+      <div class="container">
+        <div class="row">
+          {% if user.is_staff %}
+          <div class="col-lg-6 offset-md-3" style="margin-top:6em">
+              <div class="card card-body">
+                <form method="POST" enctype="multipart/form-data" action="{% url 'index' %}">
+                  {%csrf_token%}
+                  {{form.as_p}}
+                  <input type="submit" value="Submit"> 
+                </form>
+              </div>
+              <a class="btn btn-warning" style="margin-top: 4em;margin-left: 1em;" href="{% url 'visual'%}">Our Analysis &#8594;</a>
+          </div>
+          {%else%}
+          <div class="col-lg-6 offset-md-3" style="margin-top:6em;">
+              <div class="card card-body">
+                <h5 class="card-title text-muted text-uppercase text-center" style="font-weight: bold;">
+                  Alzheimer's DISEASE PREDICTION
+                </h5>
+                <h6 class="card-title text-muted">Alzheimer's disease is a progressive disorder that causes brain cells to waste away (degenerate) and die. Alzheimer's disease is the most common cause of dementia — a continuous decline in thinking, behavioral and social skills that disrupts a person's ability to function independently.
+                The early signs of the disease may be forgetting recent events or conversations. As the disease progresses, a person with Alzheimer's disease will develop severe memory impairment and lose the ability to carry out everyday tasks.</h6>          
+                <a href="{% url 'ad' %}" class="btn btn-block btn-danger text-uppercase">Know Ur Brain Status</a>
+              </div>
+          </div>
+          {%endif%}
+        </div>
+      </div>
+    </div>
+{%endblock%}    

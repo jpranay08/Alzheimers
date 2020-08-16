@@ -1,0 +1,126 @@
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <title>Alzheimers Disease Prediction</title>
+    <style>
+      .blink {
+        animation: blinker 0.6s linear infinite;
+        font-size: 20px;
+        font-family: sans-serif;
+        text-align: center;
+      }
+
+      @keyframes blinker {
+          50% {
+              opacity: 0;
+          }
+      }
+    </style>
+  </head>
+  <body style="background-color:rgb(193, 247, 226)">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'home' %}">Disease Predictor</a>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="display-4 my-2 text-center">Alzheimers Disease Prediction</div>
+      <hr/>
+      {% if context %}
+      <div class="display-4 text-center blink">
+         {{ context }} 
+      </div>
+      {% endif %}
+      <form class="row" method="POST" action="{% url 'ad' %}">
+        {% csrf_token %}
+        <div class="col-md-4 offset-md-2">
+          <div class="form-group">
+            <label for="age">Age</label>
+              <input type="number"
+                step="1"
+                class="form-control"
+                id="age"
+                value="0"
+                name="age"/>
+           </div>
+           <div class="form-group">
+             <label for="M/F">M/F</label>
+             <input
+               type="number"
+               step="1"
+               class="form-control"
+               id="M/F"
+               value="0"
+               name="M/F"/>
+            </div>
+            <div class="form-group">
+              <label for="MMSE">MMSE</label>
+              <input
+                type="number"
+                step=".01"
+                class="form-control"
+                id="MMSE"
+                value="0"
+                name="MMSE"/>
+            </div>
+            <div class="form-group">
+              <label for="CDR">CDR</label>
+              <input
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="CDR"
+                value="0"
+                name="CDR"/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="eTIV">eTIV</label>
+              <input
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="eTIV"
+                value="0"
+                name="eTIV"/>
+            </div>
+            <div class="form-group">
+              <label for="nWBV">nWBV</label>
+              <input
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="nWBV"
+                value="0"
+                name="nWBV"/>
+            </div>
+            
+            <div class="form-group">
+              <label for="SES">SES</label>
+              <input
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="SES"
+                value="0"
+                name="SES"/>
+            </div>
+            <div class="form-group">
+              <label for="EDUC">EDUC</label>
+              <input
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="EDUC"
+                value="0"
+                name="EDUC"/>
+            </div>
+            <input type="submit" class="btn btn-danger" value="Submit">
+            </input>
+          </div>
+        </form>
+  </body>
+</html>
